@@ -44,7 +44,7 @@
         android:text="@string/start_date"
         android:id="@+id/textView5"
         android:layout_marginTop="20dp"
-        android:layout_below="@+id/editText"
+        android:layout_below="@+id/source"
         android:layout_alignParentStart="true" />
 
     <TextView
@@ -60,15 +60,15 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText"
+        android:id="@+id/source"
         android:layout_below="@+id/textView3"
         android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText2"
-        android:layout_alignBottom="@+id/editText"
+        android:id="@+id/destination"
+        android:layout_alignBottom="@+id/source"
         android:layout_alignStart="@+id/textView4" />
 
     <EditText
@@ -79,16 +79,15 @@
         android:layout_alignParentStart="true"
         android:onClick="datePicker"
         android:focusable="false"
-        android:layout_toStartOf="@+id/editText2" />
+        android:layout_toStartOf="@+id/destination" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="time"
-        android:ems="10"
-        android:id="@+id/editText4"
-        android:layout_below="@+id/textView6"
-        android:layout_alignParentStart="true" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/startTimeInput"
+            android:onClick="timePicker"
+            android:layout_below="@+id/textView6"
+            android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -96,16 +95,14 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/end_date"
         android:id="@+id/textView7"
-        android:layout_below="@+id/editText4"
+        android:layout_below="@+id/startTimeInput"
         android:layout_alignParentStart="true"
         android:layout_marginTop="28dp" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="date"
-        android:ems="10"
-        android:id="@+id/editText5"
+        android:id="@+id/endDateInput"
         android:layout_below="@+id/textView7"
         android:layout_alignParentStart="true" />
 
@@ -115,16 +112,14 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/end_time"
         android:id="@+id/textView8"
-        android:layout_below="@+id/editText5"
+        android:layout_below="@+id/endDateInput"
         android:layout_alignParentStart="true"
         android:layout_marginTop="18dp" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="time"
-        android:ems="10"
-        android:id="@+id/editText6"
+        android:id="@+id/endTimeInput"
         android:layout_below="@+id/textView8"
         android:layout_alignParentStart="true" />
 
@@ -134,7 +129,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/variant"
         android:id="@+id/textView9"
-        android:layout_below="@+id/editText6"
+        android:layout_below="@+id/endTimeInput"
         android:layout_alignParentStart="true"
         android:layout_marginTop="19dp" />
 
@@ -142,11 +137,20 @@
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/spinner"
+        android:id="@+id/variant"
         android:layout_below="@+id/textView9"
         android:layout_alignParentStart="true"
         android:spinnerMode="dropdown"
         android:entries="@array/variants"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:id="@+id/submit"
+        android:onClick="startActivityTwo"
+        android:layout_below="@+id/variant"
+        android:layout_alignEnd="@+id/destination" />
 
 </RelativeLayout>
 

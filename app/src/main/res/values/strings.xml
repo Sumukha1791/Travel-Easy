@@ -15,5 +15,6 @@
         <item>mini van</item>
         <item>convertible</item>
     </string-array>
+    <string name="submit">Submit</string>
 
 </resources>
