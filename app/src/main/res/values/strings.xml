@@ -16,5 +16,10 @@
         <item>convertible</item>
     </string-array>
     <string name="submit">Submit</string>
-
+    <string name="connection">Connection</string>
+    <string name="aggregator">Aggregator:</string>
+    <string name="rate">Total Rate:</string>
+    <string name="booking_link">Booking Link:</string>
+    <string name="service_provider">Service provider:</string>
+    <string name="link_to_provider">Link to service provider:</string>
 </resources>

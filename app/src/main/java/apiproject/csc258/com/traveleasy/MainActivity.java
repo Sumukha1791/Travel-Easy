@@ -173,6 +173,20 @@ public class MainActivity extends AppCompatActivity {
         String endTime = endTimeInput.getText().toString();
         String variant = variantInput.getSelectedItem().toString();
 
+        switch(variant){
+            case "economy": variant = "ECAR";
+                            break;
+            case "mid-size suv": variant = "IFAR";
+                            break;
+            case "premium": variant = "PCAR";
+                            break;
+            case "mini van": variant = "MVAR";
+                            break;
+            case "convertible": variant = "STAR";
+                            break;
+            default: variant = "ECAR";
+        }
+
         TestInternet testnet = new TestInternet(v.getContext());
         testnet.execute();
 

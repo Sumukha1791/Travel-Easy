@@ -1,13 +1,188 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    android:weightSum="1">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+<RelativeLayout  android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".SecondActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="58dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="second activiy"
+        android:text="Connection"
         android:id="@+id/textView2"
-        android:layout_weight="0.32" />
-</LinearLayout>
+        android:layout_weight="0.32"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:gravity="center"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Bill summary:"
+        android:id="@+id/textView10"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="12dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/aggregator"
+        android:id="@+id/aggregatorTV"
+        android:layout_below="@+id/textView10"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="15dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Total Rate:"
+        android:id="@+id/totalRateTV"
+        android:layout_marginTop="11dp"
+        android:layout_below="@+id/aggregatorTV"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/booking_link"
+        android:id="@+id/bookingLinkTV"
+        android:layout_marginTop="19dp"
+        android:layout_below="@+id/linkToProviderTV"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/service_provider"
+        android:id="@+id/serviceProviderTV"
+        android:layout_below="@+id/totalRateTV"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/aggregatorET"
+        android:layout_alignBottom="@+id/aggregatorTV"
+        android:layout_toEndOf="@+id/aggregatorTV"
+        android:layout_marginLeft="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/totalRateET"
+        android:text="tr"
+        android:layout_alignBaseline="@+id/totalRateTV"
+        android:layout_alignBottom="@+id/totalRateTV"
+        android:layout_toEndOf="@+id/aggregatorTV" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_gravity="bottom"
+        android:gravity="bottom|left"
+        android:id="@+id/linkToBookET"
+        android:layout_alignBaseline="@+id/bookingLinkTV"
+        android:layout_toEndOf="@+id/bookingLinkTV"
+        android:layout_marginLeft="10dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/link_to_provider"
+        android:id="@+id/linkToProviderTV"
+        android:layout_marginTop="11dp"
+        android:layout_below="@+id/serviceProviderTV"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/serviceProviderET"
+        android:layout_alignBottom="@+id/serviceProviderTV"
+        android:layout_toEndOf="@+id/linkToBookET"
+        android:layout_marginLeft="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/linkToServiceProviderET"
+        android:layout_alignBottom="@+id/linkToProviderTV"
+        android:layout_toEndOf="@+id/linkToProviderTV"
+        android:layout_marginStart="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="How will you travel to the car rental location?"
+        android:id="@+id/textView11"
+        android:layout_below="@+id/bookingLinkTV"
+        android:layout_toStartOf="@+id/aggregatorET"
+        android:layout_marginTop="200dp"
+        android:layout_alignParentEnd="true" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/radioGroup"
+        android:layout_below="@id/textView11"
+        android:orientation="horizontal"
+        android:layout_marginLeft="50dp">
+
+
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="uber"
+            android:id="@+id/uber"
+            android:checked="true"
+            android:padding="25dp"/>
+
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Own transportation"
+            android:checked="false"
+            android:id="@+id/ownTransportation" />
+
+    </RadioGroup>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SUBMIT"
+        android:id="@+id/submit"
+        android:onClick="startThirdActivity"
+        android:layout_below="@+id/autocomplete"
+        android:layout_toStartOf="@+id/linkToServiceProviderET" />
+
+    <AutoCompleteTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/autocomplete"
+        android:hint="Type in your Location or enable your gps"
+        android:layout_below="@+id/radioGroup"
+        android:layout_alignParentStart="true" />
+
+</RelativeLayout>
+</ScrollView>
