@@ -2,19 +2,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-
     >
 
 <RelativeLayout  android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
-
-    >
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
 
     <TextView
-
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -24,7 +20,7 @@
         android:layout_alignParentStart="true" />
 
     <TextView
-        style="@style/AutoCompleteTextViewAppTheme"
+        style="@style/_AppTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -34,7 +30,6 @@
         android:layout_alignParentStart="true" />
 
     <TextView
-        style="@style/AutoCompleteTextViewAppTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -45,7 +40,6 @@
         android:layout_toEndOf="@+id/textView" />
 
     <TextView
-        style="@style/AutoCompleteTextViewAppTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -56,7 +50,6 @@
         android:layout_alignParentStart="true" />
 
     <EditText
-
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/source"
@@ -88,7 +81,6 @@
 
 
     <TextView
-        style="@style/AutoCompleteTextViewAppTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -107,7 +99,6 @@
         android:layout_alignEnd="@+id/startDateInput" />
 
     <TextView
-        style="@style/AutoCompleteTextViewAppTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -126,7 +117,6 @@
         android:layout_alignParentEnd="true" />
 
     <TextView
-        style="@style/AutoCompleteTextViewAppTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -156,7 +146,6 @@
         android:layout_toEndOf="@+id/textView" />
 
     <TextView
-        style="@style/AutoCompleteTextViewAppTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"

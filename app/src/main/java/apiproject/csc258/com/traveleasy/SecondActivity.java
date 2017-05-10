@@ -1,6 +1,7 @@
 package apiproject.csc258.com.traveleasy;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -43,7 +44,7 @@ import java.util.concurrent.ExecutionException;
 /**
  * Created by sumukha on 2/7/2017.
  */
-public class SecondActivity extends AppCompatActivity {
+public class SecondActivity extends Activity {
 
     JSONObject HotwireJSON;
     ProgressDialog prgDialog;

@@ -1,5 +1,6 @@
 package apiproject.csc258.com.traveleasy;
 
+import android.app.Activity;
 import android.app.Application;
 import android.app.DatePickerDialog;
 import android.app.DialogFragment;
@@ -35,7 +36,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     Calendar myCalendar = Calendar.getInstance();
     EditText startDateInput;
