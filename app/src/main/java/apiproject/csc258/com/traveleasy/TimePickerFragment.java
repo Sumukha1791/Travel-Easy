@@ -19,23 +19,18 @@ import java.util.Calendar;
 import android.widget.TimePicker;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener{
     public static final int TIME_PICKER_INTERVAL=30;
     private boolean mIgnoreEvent=false;
 
-
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
-        //Use the current time as the default values for the time picker
         final Calendar c = Calendar.getInstance();
         int hour = c.get(Calendar.HOUR_OF_DAY);
         int minute = 0;
 
-        //Create and return a new instance of TimePickerDialog
-        TimePickerDialog tpd = new TimePickerDialog(getActivity(),AlertDialog.THEME_DEVICE_DEFAULT_LIGHT
+        TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(),AlertDialog.THEME_DEVICE_DEFAULT_LIGHT
                 , this, hour, minute, DateFormat.is24HourFormat(getActivity())){
 
             public void onTimeChanged(TimePicker timePicker,
@@ -52,19 +47,13 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
             }
         };
 
-        //You can set a simple text title for TimePickerDialog
-        //tpd.setTitle("Title Of Time Picker Dialog");
-
-        /*.........Set a custom title for picker........*/
-        TextView tvTitle = new TextView(getActivity());
-        tvTitle.setText("Start Time");
-        tvTitle.setBackgroundColor(Color.parseColor("#EEE8AA"));
-        tvTitle.setPadding(5, 3, 5, 3);
-        tvTitle.setGravity(Gravity.CENTER_HORIZONTAL);
-        tpd.setCustomTitle(tvTitle);
-        /*.........End custom title section........*/
-
-        return tpd;
+        TextView titletv = new TextView(getActivity());
+        titletv.setText("Start Time");
+        titletv.setBackgroundColor(Color.parseColor("#EEE8AA"));
+        titletv.setPadding(5, 3, 5, 3);
+        titletv.setGravity(Gravity.CENTER_HORIZONTAL);
+        timePickerDialog.setCustomTitle(titletv);
+        return timePickerDialog;
     }
 
     public static int getRoundedMinute(int minute){
@@ -73,25 +62,15 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
             minute = minuteFloor + (minute == minuteFloor + 1 ? TIME_PICKER_INTERVAL : 0);
             if (minute == 60)  minute=0;
         }
-
         return minute;
     }
 
-    //onTimeSet() callback method
     public void onTimeSet(TimePicker view, int hourOfDay, int minute){
-        //Do something with the user chosen time
-        //Get reference of host activity (XML Layout File) TextView widget
-       // TextView tv = (TextView) getActivity().findViewById(R.id.tv);
         Bundle args = getArguments();
         int index = args.getInt("Rid");
 
         EditText startTimeInput = (EditText) getActivity().findViewById(index);
-        //Log.i("timepickerfragment","r: "+R.id.startTimeInput+" getact:"+);
-
         startTimeInput.setText("");
-        //Set a message for user
-        //tv.setText("Your chosen time is...\n\n");
-        //Display the user changed time on TextView
         startTimeInput.setText(startTimeInput.getText()+ String.valueOf(hourOfDay)
                 + " : " + String.valueOf(minute) + "\n");
     }

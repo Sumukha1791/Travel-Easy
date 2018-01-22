@@ -1,19 +1,11 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-
-<RelativeLayout  android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".SecondActivity">
-
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="58dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Connection"
+        android:text="Travel summary"
         android:id="@+id/textView2"
         android:layout_weight="0.32"
         android:layout_alignParentEnd="true"
@@ -46,7 +38,6 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Total Rate:"
         android:id="@+id/totalRateTV"
-        android:layout_marginTop="11dp"
         android:layout_below="@+id/aggregatorTV"
         android:layout_alignParentStart="true" />
 
@@ -56,7 +47,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/booking_link"
         android:id="@+id/bookingLinkTV"
-        android:layout_marginTop="19dp"
+        android:layout_marginTop="28dp"
         android:layout_below="@+id/linkToProviderTV"
         android:layout_alignParentStart="true" />
 
@@ -66,6 +57,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/service_provider"
         android:id="@+id/serviceProviderTV"
+        android:layout_marginTop="76dp"
         android:layout_below="@+id/totalRateTV"
         android:layout_alignParentStart="true" />
 
@@ -106,7 +98,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/link_to_provider"
         android:id="@+id/linkToProviderTV"
-        android:layout_marginTop="11dp"
+        android:layout_marginTop="58dp"
         android:layout_below="@+id/serviceProviderTV"
         android:layout_alignParentStart="true" />
 
@@ -131,57 +123,21 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="How will you travel to the car rental location?"
-        android:id="@+id/textView11"
-        android:layout_marginTop="40dp"
-        android:layout_below="@+id/bookingLinkTV"
-        android:layout_alignParentStart="true" />
-
-    <RadioGroup
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/radioGroup"
-        android:layout_below="@id/textView11"
-        android:orientation="horizontal"
-        android:layout_marginLeft="50dp">
-
-
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="uber"
-            android:id="@+id/uber"
-            android:checked="true"
-            android:padding="25dp"/>
-
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Own transportation"
-            android:checked="false"
-            android:id="@+id/ownTransportation" />
-
-    </RadioGroup>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="SUBMIT"
-        android:id="@+id/submit"
-        android:onClick="startThirdActivity"
-        android:layout_below="@+id/autocomplete"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Total Rate including uber costs:"
+        android:id="@+id/UberCostsTV"
+        android:layout_below="@+id/totalRateTV"
         android:layout_toStartOf="@+id/linkToServiceProviderET" />
 
-    <AutoCompleteTextView
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/autocomplete"
-        android:hint="Type in your Location or enable your gps"
-        android:layout_below="@+id/radioGroup"
-        android:layout_alignParentStart="true" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/UberCosts"
+        android:layout_alignBottom="@+id/UberCostsTV"
+        android:layout_alignStart="@+id/linkToServiceProviderET"
+        android:layout_alignTop="@+id/UberCostsTV" />
+
 
 </RelativeLayout>
-</ScrollView>

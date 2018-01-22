@@ -1,5 +1,6 @@
 package apiproject.csc258.com.traveleasy;
 
+import android.content.Context;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -7,78 +8,80 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Properties;
 
 /**
  * Created by sumuk on 5/2/2017.
  */
 public class PlaceAPI {
-    private static final String TAG = PlaceAPI.class.getSimpleName();
 
-    private static final String PLACES_API_BASE = "https://maps.googleapis.com/maps/api/place";
-    private static final String TYPE_AUTOCOMPLETE = "/autocomplete";
-    private static final String OUT_JSON = "/json";
+    Properties properties = new Properties();
+    private String placesAPI;
+    private String typeAutoComplete;
+    private String outJSON;
+    private String APIKey;
 
-    private static final String API_KEY = "AIzaSyC0J1lFZpXKGlyvezLgnww3TYVR0EZ-JQU";
+    PlaceAPI(){
+        placesAPI = properties.getProperty("PLACES_API_BASE");
+        typeAutoComplete = properties.getProperty("TYPE_AUTOCOMPLETE");
+        outJSON = properties.getProperty("OUT_JSON");
+        APIKey = properties.getProperty("API_KEY");
+    }
 
-    public ArrayList<String> autocomplete (String input) {
+    public ArrayList<String> autocomplete (String input, Context context) {
         ArrayList<String> resultList = null;
-      //  Log.i("traveleasy", "in a placeapi class");
-        HttpURLConnection conn = null;
+        HttpURLConnection connection = null;
         StringBuilder jsonResults = new StringBuilder();
 
         try {
-            StringBuilder sb = new StringBuilder(PLACES_API_BASE + TYPE_AUTOCOMPLETE + OUT_JSON);
-            sb.append("?key=" + API_KEY);
-          //  sb.append("&types=(cities)");
-            sb.append("&input=" + URLEncoder.encode(input, "utf8"));
+            InputStream inputFileStream = context.getAssets().open("Places.properties");
+            properties.load(inputFileStream);
+            placesAPI = properties.getProperty("PLACES_API_BASE");
+            typeAutoComplete = properties.getProperty("TYPE_AUTOCOMPLETE");
+            outJSON = properties.getProperty("OUT_JSON");
+            APIKey = properties.getProperty("API_KEY");
+            StringBuilder stringBuilder = new StringBuilder(placesAPI + typeAutoComplete + outJSON);
+            stringBuilder.append("?key=" + APIKey);
+            stringBuilder.append("&input=" + URLEncoder.encode(input, "utf8"));
 
-            URL url = new URL(sb.toString());
-            conn = (HttpURLConnection) url.openConnection();
-            InputStreamReader in = new InputStreamReader(conn.getInputStream());
-
-            // Load the results into a StringBuilder
+            Log.i("traveleasy","string builder url "+stringBuilder.toString());
+            URL url = new URL(stringBuilder.toString());
+            connection = (HttpURLConnection) url.openConnection();
+            InputStreamReader inputStreamReader = new InputStreamReader(connection.getInputStream());
             int read;
             char[] buff = new char[1024];
-            while ((read = in.read(buff)) != -1) {
-             //   Log.i("traveleasy", " sucess from placesapi");
+            while ((read = inputStreamReader.read(buff)) != -1) {
                 jsonResults.append(buff, 0, read);
-               // Log.i("traveleasy"," json places "+jsonResults.toString());
             }
         } catch (MalformedURLException e) {
-            Log.i(TAG, "Error processing Places API URL", e);
+            Log.i("traveleasy", "Error processing Places API URL", e);
             return resultList;
         } catch (IOException e) {
-            Log.i(TAG, "Error connecting to Places API", e);
+            Log.i("traveleasy", "Error connecting to Places API", e);
             return resultList;
         } finally {
-            if (conn != null) {
-                conn.disconnect();
+            if (connection != null) {
+                connection.disconnect();
             }
         }
 
         try {
-            // Log.d(TAG, jsonResults.toString());
-
-            // Create a JSON object hierarchy from the results
             JSONObject jsonObj = new JSONObject(jsonResults.toString());
-            JSONArray predsJsonArray = jsonObj.getJSONArray("predictions");
-
-            // Extract the Place descriptions from the results
-            resultList = new ArrayList<String>(predsJsonArray.length());
-            for (int i = 0; i < predsJsonArray.length(); i++) {
-                resultList.add(predsJsonArray.getJSONObject(i).getString("description"));
+            JSONArray predictionsJsonArray = jsonObj.getJSONArray("predictions");
+            resultList = new ArrayList<String>(predictionsJsonArray.length());
+            for (int i = 0; i < predictionsJsonArray.length(); i++) {
+                resultList.add(predictionsJsonArray.getJSONObject(i).getString("description"));
             }
         } catch (JSONException e) {
-            Log.i(TAG, "Cannot process JSON results", e);
+            Log.i("traveleasy", "Cannot process JSON results", e);
         }
-      //  Log.i("traveleasy"," last resultlist before return "+resultList.toString());
         return resultList;
     }
-
 }

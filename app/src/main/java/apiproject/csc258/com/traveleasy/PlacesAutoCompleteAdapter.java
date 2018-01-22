@@ -18,15 +18,13 @@ class PlacesAutoCompleteAdapter extends ArrayAdapter<String> implements Filterab
 
     public PlacesAutoCompleteAdapter(Context context, int resource) {
         super(context, resource);
-
         mContext = context;
         mResource = resource;
     }
 
     @Override
     public int getCount() {
-        // Last item will be the footer
-        return resultList.size();
+        return resultList!=null? resultList.size():null;
     }
 
     @Override
@@ -39,15 +37,14 @@ class PlacesAutoCompleteAdapter extends ArrayAdapter<String> implements Filterab
         Filter filter = new Filter() {
             @Override
             protected FilterResults performFiltering(CharSequence constraint) {
-                //Log.i("traveleasy", "in getfilter");
+                Log.i("traveleasy", "in getfilter");
                 FilterResults filterResults = new FilterResults();
                 if (constraint != null) {
-                    resultList = mPlaceAPI.autocomplete(constraint.toString());
+                    resultList = mPlaceAPI.autocomplete(constraint.toString(),mContext);
 
                     filterResults.values = resultList;
                     filterResults.count = resultList.size();
                 }
-
                 return filterResults;
             }
 
@@ -61,7 +58,6 @@ class PlacesAutoCompleteAdapter extends ArrayAdapter<String> implements Filterab
                 }
             }
         };
-
         return filter;
     }
 }

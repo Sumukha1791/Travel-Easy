@@ -1,6 +1,7 @@
 package apiproject.csc258.com.traveleasy;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Application;
 import android.app.DatePickerDialog;
 import android.app.DialogFragment;
@@ -17,6 +18,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -55,8 +58,6 @@ public class MainActivity extends Activity {
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear,
                               int dayOfMonth) {
-            // TODO Auto-generated method stub
-
             SimpleDateFormat sdf = updateLabel(year, monthOfYear, dayOfMonth);
             startDateInput.setText(sdf.format(myCalendar.getTime()));
         }
@@ -67,14 +68,10 @@ public class MainActivity extends Activity {
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear,
                               int dayOfMonth) {
-            // TODO Auto-generated method stub
-
             SimpleDateFormat sdf = updateLabel(year, monthOfYear, dayOfMonth);
             endDateInput.setText(sdf.format(myCalendar.getTime()));
         }
     };
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,23 +86,6 @@ public class MainActivity extends Activity {
         sourceInput = (EditText) findViewById(R.id.source);
         destinationInput = (EditText) findViewById(R.id.destination);
         variantInput = (Spinner) findViewById(R.id.variant);
-
-        /*submit.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-
-                prgDialog = new ProgressDialog(getApplicationContext());
-                prgDialog.setMessage("Wait maddi");
-                prgDialog.setCancelable(false);
-
-
-                //invokeWS(hotwireparams);
-
-
-            }
-        }); */
 
         startDateInput.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -174,7 +154,9 @@ public class MainActivity extends Activity {
         String endTime = endTimeInput.getText().toString();
         String variant = variantInput.getSelectedItem().toString();
 
-        switch(variant){
+
+
+       switch(variant){
             case "economy": variant = "ECAR";
                             break;
             case "mid-size suv": variant = "IFAR";
@@ -188,38 +170,45 @@ public class MainActivity extends Activity {
             default: variant = "ECAR";
         }
 
-        TestInternet testnet = new TestInternet(v.getContext());
-        testnet.execute();
-
         Log.i("traveleasy", "strtdate " + startdate + " enddate " + endDate + " source " + source + " dest " + destination + " strtti " + startTime + " endtim " + endTime + " var " + variant);
 
-        Intent intent = new Intent(MainActivity.this, SecondActivity.class);
-        intent.putExtra("startDate",startDate);
-        intent.putExtra("endDate",endDate);
-        intent.putExtra("source",source);
-        intent.putExtra("destination",destination);
-        intent.putExtra("startTime",startTime);
-        intent.putExtra("endTime",endTime);
-        intent.putExtra("variant",variant);
+        if(startDate.equals("") || endDate.equals("") || source.equals("") || destination.equals("") || startTime.equals("") || endTime.equals("")) {
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            alertDialogBuilder.setMessage("All the input fields are compulsory!!");
+                    alertDialogBuilder.setPositiveButton("Ok",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface arg0, int arg1) {
+                                  // finish();
+                                }
+                            });
 
-        startActivity(intent);
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+        }
+        else{
+            Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+            intent.putExtra("startDate", startDate);
+            intent.putExtra("endDate", endDate);
+            intent.putExtra("source", source);
+            intent.putExtra("destination", destination);
+            intent.putExtra("startTime", startTime);
+            intent.putExtra("endTime", endTime);
+            intent.putExtra("variant", variant);
+
+            startActivity(intent);
+        }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }

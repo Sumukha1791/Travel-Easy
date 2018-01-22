@@ -17,6 +17,7 @@ public class CheapestAmountModel implements Parcelable {
     public CheapestAmountModel(){
 
     }
+    
     public CheapestAmountModel(Parcel in) {
         aggregator = in.readString();
         deepLink = in.readString();
